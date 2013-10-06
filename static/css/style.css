@@ -1,0 +1,128 @@
+body
+{
+    background-image: url("/static/img/fond.jpg");
+    color: black;
+    font: 14px "Trebuchet MS", Georgia, serif;
+}
+
+
+#document
+{
+    position: absolute;
+    width: 99%;
+}
+
+#bloc
+{
+    position: relative;
+    width: 780px;
+    background-color: #c0bab1;
+    text-align:left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Entete */
+#entete
+{
+    margin-top: 5px;;
+    display:block;
+    font: 25px "Trebuchet MS", Georgia, serif;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+}
+
+.elem_entete {
+    display:inline-block;
+    width:160px;
+    height:160px;
+    background-color:#9c2b20;
+    margin:0;
+    padding:10px;
+}
+
+.elem_entete a {
+    color: white;
+    text-decoration: none;
+}
+
+#recherche {
+    display:inline-block;
+    margin-right:154px;
+}
+
+#recherche_envoyer {
+    background-image: url('/static/img/loupe.jpg'); 
+    border: none;
+    width:23px;
+    height:22px;
+    padding-top:3px;
+}
+/* Corps */
+
+#messages {
+    margin-left: 240px;
+    margin-right: 30px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #dbd2c1;
+    border : 1px solid #766555
+}
+
+#corps{
+
+}
+
+.bloc
+{
+    margin-left: 240px;
+    margin-right: 30px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #dbd2c1;
+    border : 1px solid #766555;
+}
+
+/* Sommaire - Menu gauche */
+#sommaire {
+    width:160px;
+    float:left;
+    background-color: #dbd2c1;
+    margin-left: 30px;
+    margin-top: 20px;
+    border : 1px solid #766555;
+    text-align:left;
+    padding-left:10px;
+}
+
+.element_sommaire{
+    text-decoration: none;
+    margin-top:30px;
+    font-weight:bold;
+    font-size:18px;
+    color:#3f3f41;
+
+}
+
+#pied
+{
+    height:40px;
+    text-align: right;
+    font-size: .8em;
+    background-color: #c0bab1;
+    margin-bottom:20px;
+}
+
+address
+{
+    font-style:normal;
+}
+
+.W3C
+{
+    position : absolute;
+    left:240px;
+    margin-top: 5px;
+}
