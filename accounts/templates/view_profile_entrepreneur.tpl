@@ -1,4 +1,4 @@
-{% extends "index.tpl" %}
+{% extends "base.tpl" %}
 
 {% block title %}Profile de {{ entrepreneur.first_name }} {% endblock %}
 

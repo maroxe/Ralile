@@ -1,7 +1,12 @@
 # Django settings for galile project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+BASE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir)
+def absolute_path(relative_path):
+    return os.path.join(BASE_DIR, relative_path).replace(os.sep, '/')
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -12,7 +17,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'D:/Dev/Galile360/database.sql',                      # Or path to database file if using sqlite3.
+        'NAME': absolute_path('database.sql'),                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -50,7 +55,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = 'D:/Dev/Galile360/accounts/uploads'
+MEDIA_ROOT = absolute_path('accounts/uploads')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -72,7 +77,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "D:/Dev/Galile360/static/",
+    absolute_path('static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -112,7 +117,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "D:/Dev/Galile360/templates",
+    absolute_path('templates'),
 )
 
 INSTALLED_APPS = (

@@ -1,4 +1,4 @@
-{% extends "index.tpl" %}
+{% extends "base.tpl" %}
 
 {% block title %} {{ investisseur.first_name }} {{ investisseur.last_name }}{% endblock %}
 

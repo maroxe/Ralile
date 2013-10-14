@@ -25,38 +25,61 @@ class UserProfile(models.Model):
         def __unicode__(self):
                 return self.user.email
 
+class BaseProfile(models.Model):
+    class Meta:
+        abstract = True
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    birth_date = models.DateField(blank=True)
+    sex = models.CharField(max_length=1, choices=(('M', 'Male'), ('F', 'Female')))
+    adresse = models.CharField(max_length=300)
 
-class Investisseur(models.Model):
+
+
+class Investisseur(BaseProfile):
     """
         Mentors
     """
 
     profile = models.OneToOneField(UserProfile, primary_key=True, related_name='investisseur')
-    first_name = models.CharField(max_length=200, blank=True)
-    last_name = models.CharField(max_length=200, blank=True)
-    logo = models.ImageField(upload_to='avatars/', blank=True)
-    secteur = models.CharField(max_length=200, blank=True)
 
+    #- Pourquoi voulez-vous etre mentor ?
+    motivation = models.CharField(max_length=200)
+    # - Dans quel domaine pouvez-vous transmettre des competences ?
+    domaine = models.CharField(max_length=200)
+    # - Qui etes-vous ?
+    description = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return "investisseur: " + self.first_name + " - profile"
+        return "mentor: " + self.first_name + " - profile"
 
 
         
-class Entrepreneur(models.Model):
+class Entrepreneur(BaseProfile):
     profile = models.OneToOneField(UserProfile, primary_key=True, related_name='entrepreneur')
 
-    first_name = models.CharField(max_length=200, blank=True)
-    last_name = models.CharField(max_length=200, blank=True)
-    logo = models.ImageField(upload_to='avatars/', blank=True)
-    secteur = models.CharField(max_length=200, blank=True)
-    date_creation = models.DateField(default=datetime.now, blank=True)
-    resume = models.TextField(blank=True)
-    company_name = models.CharField(max_length=200, blank=True)
+    # - Qui etes-vous ?
+    company_name = models.CharField(max_length=200)
+    #- Quel est votre projet ? (Court resume, env 4-5 lignes)
+    description = models.TextField()
+    # - Quel est le marche vise ?
+    market = models.CharField(max_length=200)
+    # - Quel est le differentiateur ?
+    # - Quel est le niveau d'avancement du projet ?
+    progress = models.IntegerField(blank=True)
+    # - Quel chiffre d'affaire visez-vous dans 3 ans ?
+    turnover = models.IntegerField(blank=True)
+    # - Qu'attendez-vous de la communaute Galile360 ?
+    expectation = models.TextField(blank=True)
+    # - Upload CV
+    resume = models.FileField(upload_to='cv/')
+    logo = models.ImageField(upload_to='avatars/')
+    creation_date = models.DateField(default=datetime.now)
 
-    mentors = models.ManyToManyField(Investisseur, related_name='mentors', blank=True)
-    # Investisseur liked by the mentor
-    likes = models.ManyToManyField(Investisseur, related_name='likes', blank=True)
+
+    # Mentors and likes
+    mentors = models.ManyToManyField(Investisseur, related_name='mentors')
+    likes = models.ManyToManyField(Investisseur, related_name='likes')
 
     def __unicode__(self):
         return "entrepreneur: " + self.first_name + "   - profile"
