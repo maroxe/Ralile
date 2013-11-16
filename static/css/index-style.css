@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(233, 242, 248);
+    padding: 0px 5% 0px 5%;
+}
+
+#logo {
+    background-color: white;
+}
+
+ #logo #description {
+    float: right;
+    width: 200px;
+}
+
+#corps {
+    clear: both;
+    background-color: rgb(128,164,188);
+    color:white;
+    min-height: 400px;
+    padding: 5% 25%;
+}
+
+#corps .block {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#corps h1 {
+    background-color: #8D1537;
+    padding-left: 5%;
+    margin-right: 20%;
+}
+
+#corps .shadow {
+    margin-right: 10%;
+    padding: 20px;
+    background-color: yellow;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#corps .shadow2 {
+        background-color: yellow;
+        border-bottom-left-radius: 15px;;
+}
+#corps form {
+    background-color: #E9F2F8;
+    color: black;
+    padding: 20px;
+    margin-left: 30px;
+    border-style:solid;
+    border-width:5px;
+}

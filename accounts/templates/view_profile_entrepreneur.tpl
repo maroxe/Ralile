@@ -91,7 +91,7 @@ $( document ).ready(function() {
     Description:
     <ul>
         <li>secteur: {{ entrepreneur.secteur }}</li>
-        <li>bref résumé du projet: <p>{{ entrepreneur.resume }}</p></li>
+        <li>CV: <a href="/{{ entrepreneur.resume.url }}">ICI</a></li>
         <li>date de création: {{ entrepreneur.date_creation }}</li>
     </p>
 </div>

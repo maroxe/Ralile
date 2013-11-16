@@ -15,9 +15,9 @@
     <p>
     Description:
     <ul>
-        <li>secteur: {{ investisseur.secteur }}</li>
-        <li>bref résumé du projet: {{ investisseur.resume }}</li>
-        <li>date de création: {{ investisseur.date_creation }}</li>
+        <li>motivation: {{ investisseur.motivation }}</li>
+        <li>domaine: {{ investisseur.domaine }}</li>
+        <li>description: {{ investisseur.description }}</li>
     </p>
 </div>
 {% endblock %}

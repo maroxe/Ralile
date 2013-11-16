@@ -11,7 +11,6 @@ class UserProfile(models.Model):
         
         user = models.OneToOneField(User, primary_key=True)
 
-
         def get_type(self):
                 try:
                         self.investisseur
@@ -30,7 +29,7 @@ class BaseProfile(models.Model):
         abstract = True
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    birth_date = models.DateField(blank=True)
+    birth_date = models.DateField()
     sex = models.CharField(max_length=1, choices=(('M', 'Male'), ('F', 'Female')))
     adresse = models.CharField(max_length=300)
 
@@ -66,11 +65,11 @@ class Entrepreneur(BaseProfile):
     market = models.CharField(max_length=200)
     # - Quel est le differentiateur ?
     # - Quel est le niveau d'avancement du projet ?
-    progress = models.IntegerField(blank=True)
+    progress = models.IntegerField()
     # - Quel chiffre d'affaire visez-vous dans 3 ans ?
-    turnover = models.IntegerField(blank=True)
+    turnover = models.IntegerField()
     # - Qu'attendez-vous de la communaute Galile360 ?
-    expectation = models.TextField(blank=True)
+    expectation = models.TextField()
     # - Upload CV
     resume = models.FileField(upload_to='cv/')
     logo = models.ImageField(upload_to='avatars/')

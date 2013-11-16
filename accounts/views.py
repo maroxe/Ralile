@@ -38,9 +38,18 @@ def logout(request):
 def register(request, user_type):
         template = "registration.tpl"
         success_msg = "Bienvenue parmi nous"
-        
+
+        if  user_type == 'I':
+            profile_class = Investisseur
+            registration_form_class = RegistrationInvestisseurForm
+
+        else:
+            profile_class = Entrepreneur
+            registration_form_class = RegistrationEntrepreuneurForm
+        fields = registration_form_class.fields
+
         if request.method == 'POST':
-                form = RegistrationForm(request.POST)
+                form = registration_form_class(request.POST, request.FILES)
                 if form.is_valid():
                         user = User.objects.create_user(
                                 form.cleaned_data['email'],
@@ -48,24 +57,28 @@ def register(request, user_type):
                                 form.cleaned_data['password']
                         )
                         user.save()
-
                         up = UserProfile(user=user)
                         up.save()
 
-                        if  user_type == 'I':
-                                specific_profile = Investisseur(profile=up)
+                        try:
+                            # Fill in model fields
+                            specific_profile = profile_class(profile=up)
+                            for f in fields:
+                                setattr(specific_profile, f, form.cleaned_data[f])
+                            specific_profile.save()
+                        except Exception as e :
+                            up.delete()
+                            user.delete()
+                            raise
                         else:
-                                specific_profile = Entrepreneur(profile=up)
-                        specific_profile.save()
+                            user = auth.authenticate(username=form.cleaned_data['email'],
+                                                password=form.cleaned_data['password'])
+                            auth.login(request, user)
+                            messages.info(request, success_msg)
 
-                        user = auth.authenticate(username=form.cleaned_data['email'],
-                                            password=form.cleaned_data['password'])
-                        auth.login(request, user)
-
-                        messages.info(request, success_msg)
                         return HttpResponseRedirect("/")
         else:
-                form = RegistrationForm()
+                form = registration_form_class()
                         
         return render(request, template, {
                 'form': form,
@@ -83,7 +96,6 @@ def update_profile(request):
                 instance = request.user.get_profile().entrepreneur
 
         if request.method == 'POST':
-
                 form = formClass(request.POST, request.FILES, instance=instance)
                 if form.is_valid():
                         form.save()

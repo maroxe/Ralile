@@ -6,6 +6,7 @@
 
 <div class="elem_entete" style="background-color:#514d4f;"><br /><br /><a href="{% url 'update_profile' %}"> MON COMPTE</a></div>
 
+<!--
 <div id="recherche">
   <form action="recherche.php" method="post">
     <input type="submit" id="recherche_envoyer" value="" />
@@ -20,4 +21,4 @@
 <div style="display:inline-block;">
   <img src="/static/img/barre.jpg" alt="" />
 </div>
-
+-->
