@@ -1,0 +1,59 @@
+@font-face {
+    font-family: "Ma Super Fonte";
+    src: url('../fonts/Futura LT Condensed Medium.ttf');
+}
+
+html{
+    height:100%;
+}
+
+body {
+    background-color: rgb(233, 242, 248);
+    padding: 0px;
+    margin: 0px;
+    height:100%;
+}
+
+.container {
+    background-color: rgb(128,164,188);
+    height:100%;
+    font-family: "Ma Super Fonte";
+    font-style: normal;
+    font-weight: normal;
+    padding-bottom: 100px;
+}
+
+.page-header {
+    margin-top: 0px;
+    background-color: white;
+}
+
+.page-header #description {
+    padding-top: 50px;
+    color: #900022;
+    font-size: large;
+}
+
+form {
+    background-color: #E9F2F8;
+    color: rgb(28, 109, 188);
+}
+
+#form {
+    background-image: url('../img/background.png');
+    background-repeat: no-repeat;
+    padding: 5px 10px;
+}
+#form h2 {
+    background-color: #900022;
+    color: white;
+    padding: 0 50px;
+}
+
+#inscription {
+    margin-top: 30px;
+}
+
+#inscription h3 {
+    text-align: center;
+}
