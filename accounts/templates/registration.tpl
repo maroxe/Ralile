@@ -1,15 +1,17 @@
 {% extends "base.tpl" %}
+{% load bootstrap_toolkit %}
 
-{% block title %}Create an account{% endblock %}
+{% block title %}Créer un compte{% endblock %}
 
 {% block content %}
 <div class="bloc">
-  <h1>un nouveau compte</h1>
 
-  <form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
-      {{ form.as_p }}
+  <form enctype="multipart/form-data" class="form-horizontal " action="" method="post">{% csrf_token %}
+      {{ form|as_bootstrap  }}
       <input type="submit" value="S'enregistrer">
   </form>
+
 </div>
+
 {% endblock %}
 

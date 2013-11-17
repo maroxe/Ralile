@@ -1,7 +1,7 @@
 
 {% if user.is_authenticated %}
 
-<div class="bloc">
+<div class="">
 <h2>News</h2>
 
 <p>

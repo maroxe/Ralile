@@ -1,100 +1,53 @@
-body
-{
-    background-image: url("/static/img/fond.jpg");
-    color: black;
-    font: 14px "Trebuchet MS", Georgia, serif;
+@font-face {
+    font-family: "Ma Super Fonte";
+    src: url('../fonts/Futura LT Condensed Medium.ttf');
 }
 
-
-#document
-{
-    position: absolute;
-    width: 99%;
+html{
+    height:100%;
 }
 
-#bloc
-{
-    position: relative;
-    width: 780px;
-    background-color: #c0bab1;
-    text-align:left;
-    margin-left: auto;
-    margin-right: auto;
+body {
+    background-color: rgb(233, 242, 248);
+    padding: 0px;
+    margin: 0px;
+    height:100%;
+}
+
+.container {
+    background-color: rgb(128,164,188);
+    font-family: "Ma Super Fonte";
+    font-style: normal;
+    font-weight: normal;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* Entete */
-#entete
+.page-header
 {
-    margin-top: 5px;;
-    display:block;
+    margin-top: 5px;
     font: 25px "Trebuchet MS", Georgia, serif;
     color: white;
-    margin-left: auto;
-    margin-right: auto;
     text-align:center;
+    border: none;
 }
 
 .elem_entete {
-    display:inline-block;
-    width:160px;
     height:160px;
     background-color:#9c2b20;
-    margin:0;
-    padding:10px;
 }
 
 .elem_entete a {
     color: white;
-    text-decoration: none;
-}
-
-#recherche {
-    display:inline-block;
-    margin-right:154px;
-}
-
-#recherche_envoyer {
-    background-image: url('/static/img/loupe.jpg'); 
-    border: none;
-    width:23px;
-    height:22px;
-    padding-top:3px;
-}
-/* Corps */
-
-#messages {
-    margin-left: 240px;
-    margin-right: 30px;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #dbd2c1;
-    border : 1px solid #766555
-}
-
-#corps{
-
-}
-
-.bloc
-{
-    margin-left: 240px;
-    margin-right: 30px;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #dbd2c1;
-    border : 1px solid #766555;
 }
 
 /* Sommaire - Menu gauche */
 #sommaire {
-    width:160px;
-    float:left;
-    background-color: #dbd2c1;
-    margin-left: 30px;
-    margin-top: 20px;
-    border : 1px solid #766555;
+    background-color: white;
+    border : 1px solid #4b5e6a;
     text-align:left;
-    padding-left:10px;
+    padding:10px;
 }
 
 .element_sommaire{
@@ -106,12 +59,23 @@ body
 
 }
 
+/* Corps */
+#corps {
+    background-color: white;
+    border : 1px solid #4b5e6a;
+    padding: 10px;
+}
+
+/* Pied */
+
 #pied
 {
     height:40px;
     text-align: right;
     font-size: .8em;
-    background-color: #c0bab1;
+    background-color: white;
+    margin-top:20px;
+
     margin-bottom:20px;
 }
 
@@ -122,7 +86,8 @@ address
 
 .W3C
 {
-    position : absolute;
     left:240px;
     margin-top: 5px;
 }
+
+

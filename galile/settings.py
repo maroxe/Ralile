@@ -141,7 +141,7 @@ INSTALLED_APPS = (
     'south',
     'news',
     'accounts',
-    'datetimewidget',
+    'bootstrap_toolkit',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

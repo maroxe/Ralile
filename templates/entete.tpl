@@ -1,11 +1,15 @@
-<div class="elem_entete"><br /><br /><a href="/">GALILE</a></div>
+<div class="page-header">
+<div class="row-fluid no-space">
+    <div class="span3 elem_entete" style="background-color:#861138;"><br /><br /><a href="/">GALILE</a></div>
 
-<div class="elem_entete" style="background-color:#4d7e6f;"><br />MON<br />ENTREPRISE</div>
+    <div class="span3 elem_entete" style="background-color:#61b8dc;"><br />MON<br />ENTREPRISE</div>
 
-<div class="elem_entete" style="background-color:#7d5f5f;"><br /><a href="{% url 'home' %}">FIL<br />D'ACTUALITÉ</a></div>
+    <div class="span3 elem_entete" style="background-color:#abdb39;"><br /><a href="{% url 'home' %}">FIL<br />D'ACTUALITÉ</a></div>
 
-<div class="elem_entete" style="background-color:#514d4f;"><br /><br /><a href="{% url 'update_profile' %}"> MON COMPTE</a></div>
+    <div class="span3 elem_entete" style="background-color:#f9aa56;"><br /><br /><a href="{% url 'update_profile' %}"> MON COMPTE</a></div>
+</div>
 
+</div>
 <!--
 <div id="recherche">
   <form action="recherche.php" method="post">
