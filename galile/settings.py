@@ -142,6 +142,7 @@ INSTALLED_APPS = (
     'news',
     'accounts',
     'bootstrap_toolkit',
+    'django.contrib.webdesign',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

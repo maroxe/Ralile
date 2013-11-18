@@ -1,3 +1,6 @@
+# coding=utf8
+# -*- coding: utf8 -*-
+
 from httplib import HTTPResponse
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
@@ -12,9 +15,9 @@ from models import *
 from news.forms import *
 
 def login(request):
-        template = "registration.tpl"
-        success_msg = "Welcome"
-        fail_msg = "Bad logging"
+        template = "login.tpl"
+        success_msg = "Vous êtes maintenant connecté."
+        fail_msg = "Email ou mot de passe non reconnu"
         
         if request.method == 'POST':
                 form = LoginForm(request.POST)
@@ -24,7 +27,8 @@ def login(request):
                 if user is not None:
                         auth.login(request, user)
                         messages.add_message(request, messages.INFO, success_msg)
-                        return HttpResponseRedirect("/")
+                        url = request.GET.get('next', '/')
+                        return HttpResponseRedirect(url)
                 else:
                         return HttpResponse(fail_msg)
         else:

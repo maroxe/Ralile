@@ -3,6 +3,7 @@
 {% block title %} {{ investisseur.first_name }} {{ investisseur.last_name }}{% endblock %}
 
 {% block content %}
+
 <div class="bloc">
     <h1>{{ investisseur.first_name }} {{ investisseur.last_name }} </h1>
     <p>

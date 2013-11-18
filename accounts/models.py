@@ -50,7 +50,7 @@ class Investisseur(BaseProfile):
     description = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return "mentor: " + self.first_name + " - profile"
+        return  self.first_name + ' ' + self.last_name
 
 
         
@@ -81,7 +81,7 @@ class Entrepreneur(BaseProfile):
     likes = models.ManyToManyField(Investisseur, related_name='likes')
 
     def __unicode__(self):
-        return "entrepreneur: " + self.first_name + "   - profile"
+        return  self.first_name + ' ' + self.last_name
 
     def get_news(self):
         return self.profile.user.post_set.all()

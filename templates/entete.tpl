@@ -1,6 +1,6 @@
 <div class="page-header">
 <div class="row-fluid no-space">
-    <div class="span3 elem_entete" style="background-color:#861138;"><br /><br /><a href="/">GALILE</a></div>
+    <div class="span3 elem_entete" style="background-color:#861138;"><br /><br /><a href="{% url 'about' %}">GALILE</a></div>
 
     <div class="span3 elem_entete" style="background-color:#61b8dc;"><br />MON<br />ENTREPRISE</div>
 

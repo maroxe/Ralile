@@ -1,3 +1,4 @@
+{%  load bootstrap_toolkit %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,18 +35,7 @@
                <h2>Déjà inscrit?</h2>
 
                 <form action="{% url "login" %}" method="post" class="form-horizontal well" role="form" >{% csrf_token %}
-                    <div class="control-group">
-                    <label class="control-label" for="username">ADRESSE MAIL:</label>
-                    <div class="controls">
-                    <input type="text" id="username" placeholder="Email">
-                    </div>
-                    </div>
-                    <div class="control-group">
-                    <label class="control-label" for="password">MOT DE PASSE:</label>
-                    <div class="controls">
-                    <input type="text" id="password" placeholder="Mot de passe">
-                    </div>
-                    </div>
+                    {{  login_form | as_bootstrap }}
                     <div class="offset8"><input class="btn" type="submit" value="Login"></div>
                 </form>
             </div>

@@ -1,11 +1,62 @@
 {% extends "base.tpl" %}
 
-{% block title %}Profile de {{ entrepreneur.first_name }} {% endblock %}
+{% block title %}Profile de   {{ entrepreneur.first_name }} {% endblock %}
 
 {% block content %}
-<script>
-$( document ).ready(function() {
+    {% if entrepreneur.logo %}
+         <img style="float: left" height="100" width="100" src="/{{ entrepreneur.logo.url }}" />
+    {% else %}
+        logo: logo par défaut
+    {% endif %}
+    <h2>{{ entrepreneur.first_name }} </h1>
+    <ul class="inline profile-options">
+        <li><a href="mailto:{{ entrepreneur.profile.user.email }}">Message</a></li>
+        <li><a href="{% url 'like' entrepreneur.pk %}" class="like"> J'aime ( {{ entrepreneur.likes.count }} ) </a></li>
+        <li><a href="{%  url 'mentor' entrepreneur.pk %}" class="mentor"> Je Mentor ( {{ entrepreneur.mentors.count }} )</a></li>
+    </ul>
 
+    <div class="bloc profile-desc">
+        Description:
+        <ul>
+            <li>Nom de l'entreprise: {{ entrepreneur.company_name }}</li>
+            <li>Description: {{ entrepreneur.description  }} </li>
+            <li>date de création: {{ entrepreneur.creation_date }}</li>
+        </ul>
+    </div>
+
+<div class="bloc">
+    <h2>Dernieres news:</h2>
+    {% for news in  entrepreneur.get_news %}
+        <h3>{{ news.title }}</h3>
+        <p>{{ news.body }}</p>
+    {% endfor %}
+</div>
+<div class="bloc">
+    <p>
+    Liste Des gens qui aiment le projet:
+        <ul>
+        {%  for inv in entrepreneur.likes.all %}
+            <li>{{ inv }}</li>
+        {% endfor %}
+        </ul>
+
+    </p>
+    <p>
+    Liste Des gens qui mentorent le projet:
+        <ul>
+        {%  for inv in entrepreneur.mentors.all %}
+            <li>{{ inv }}</li>
+        {% endfor %}
+        </ul>
+
+    </p>
+
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<script>
+$(function() {
     $( ".like" ).click(function( event ) {
         event.preventDefault();
         $.ajax({
@@ -37,63 +88,5 @@ $( document ).ready(function() {
         });
     });
 });</script>
-
-<div class="bloc">
-{{ entrepreneur.id }}
-    <h1>Profile de  {{ entrepreneur.first_name }} </h1>
-    <a href="mailto:{{ entrepreneur.profile.user.email }}"><img src="{{ STATIC_URL }}img/mail.jpg" /></a> |
-    <a href="{% url 'like' entrepreneur.pk %}" class="like"> J'aime ( {{ entrepreneur.likes.count }} ) </a> |
-    <a href="{%  url 'mentor' entrepreneur.pk %}" class="mentor"> Je Mentor </a>
-
-    <p>
-    {% if entrepreneur.logo %}
-        logo: <img src="/{{ entrepreneur.logo.url }}" />
-    {% else %}
-        logo: logo par défaut
-    {% endif %}
-    </p>
-</div>
-<div class="bloc">
-    {%  if entrepreneur.get_user_pk == user.pk  %}
-        <form method="POST" action="{%  url 'new_post' %}" >
-            {% csrf_token %}
-              {{ post_form.as_p }}
-              <input type="submit" value="Poster">
-        </form>
-    {% endif %}
-    Dernieres news:
-    {% for news in  entrepreneur.get_news %}
-        {{ news }}<br>
-    {% endfor %}
-
-    <p>
-    Liste Des gens qui aiment le projet:
-
-
-        <ul>
-        {%  for inv in entrepreneur.likes.all %}
-            <li>{{ inv }}</li>
-        {% endfor %}
-        </ul>
-
-    </p>
-    <p>
-    Liste Des gens qui mentorenet le projet:
-
-        <ul>
-        {%  for inv in entrepreneur.mentors.all %}
-            <li>{{ inv }}</li>
-        {% endfor %}
-        </ul>
-
-    </p>
-    <p>
-    Description:
-    <ul>
-        <li>secteur: {{ entrepreneur.secteur }}</li>
-        <li>CV: <a href="/{{ entrepreneur.resume.url }}">ICI</a></li>
-        <li>date de création: {{ entrepreneur.date_creation }}</li>
-    </p>
-</div>
 {% endblock %}
 

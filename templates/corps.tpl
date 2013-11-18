@@ -1,18 +1,18 @@
+{% load bootstrap_toolkit %}
 
 {% if user.is_authenticated %}
 
-<div class="">
-<h2>News</h2>
+
+<div class="bloc">
+<h2>Fil d'actualité</h2>
 
 <p>
-voici la liste des derniers utilistateurs créés:<br/>
-------------------------------------------------------------<br>
 {% for inv in investisseurs %}
-        <a href="/accounts/profile/{{inv.profile.user.id}}">Mr. inv  {{ inv.first_name }}</a> vient de s'enregistrer |  <a>J'aime</a><br/>
+        <a href="/accounts/profile/{{inv.profile.user.id}}"> {{ inv.last_name }} {{ inv.first_name }}</a> vient de s'enregistrer en tant qu'inevstisseur  <a>J'aime</a><br/>
 {% endfor %}
 ------------------------------------------------------------<br>
 {% for ent in entrepreneurs %}
-        <a href="/accounts/profile/{{ent.profile.user.id}}">Mr. ent {{ ent.first_name }}</a> vient de s'enregistrer |  <a>J'aime</a><br/>
+        <a href="/accounts/profile/{{ent.profile.user.id}}">{{ ent.last_name }} {{ ent.first_name }}</a> vient de s'enregistrer en tant qu'entrepreneur  <a>J'aime</a><br/>
 {% endfor %}
 </p>
 
@@ -28,7 +28,15 @@ voici la liste des derniers utilistateurs créés:<br/>
       , scelerisque eget turpis ut, auctor facilisis diam.
 </div>
 
-
+<div class="bloc">
+    <h2>Poster une news</h2>
+    <form method="POST" class="form-horizontal" action="{%  url 'new_post' %}" >
+        {% csrf_token %}
+         {{ post_form |as_bootstrap  }}
+        <input class="btn btn-default btn-lg pull-right" type="submit" value="Poster">
+        <div class="clearfix"></div>
+    </form>
+</div>
 
 {% else %}
 

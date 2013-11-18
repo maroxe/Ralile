@@ -26,7 +26,7 @@ body {
 /* Entete */
 .page-header
 {
-    margin-top: 5px;
+    margin-top: 0px;
     font: 25px "Trebuchet MS", Georgia, serif;
     color: white;
     text-align:center;
@@ -35,7 +35,6 @@ body {
 
 .elem_entete {
     height:160px;
-    background-color:#9c2b20;
 }
 
 .elem_entete a {
@@ -61,9 +60,13 @@ body {
 
 /* Corps */
 #corps {
+
+}
+.bloc {
     background-color: white;
     border : 1px solid #4b5e6a;
     padding: 10px;
+    margin-bottom: 10px;
 }
 
 /* Pied */
@@ -90,4 +93,33 @@ address
     margin-top: 5px;
 }
 
+/* View profile */
+.profile-options  {
+    float: right;
+    position: relative;
+    top: -30px;
+}
 
+.profile-options li {
+    background-color: black;
+    width: 100px;
+    text-align: center;
+}
+.profile-options li a{
+
+    color: white;
+    text-decoration: none;
+    font-size: large;
+}
+
+.profile-desc {
+    clear: both;
+    position: relative;
+    top: -30px;
+    left: 80px;
+    width: 500px;
+}
+
+/* datepicker */
+.ui-datepicker  {
+}
