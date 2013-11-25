@@ -28,7 +28,7 @@
             </div>
         </div>
 
-
+        {% block content %}
         <div class="row-fluid">
 
            <div id="form" class="span6 offset3">
@@ -58,7 +58,9 @@
                 </div>
                 <div class="span8 offset1"><a class="btn  btn-block btn-success" href="{% url 'register-investisseur' %}">S'inscrire &raquo;</a></div>
             </div>
+
          </div>
+        {% endblock content %}
     </div>
 
     </body>

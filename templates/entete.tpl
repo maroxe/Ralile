@@ -2,7 +2,7 @@
 <div class="row-fluid no-space">
     <div class="span3 elem_entete" style="background-color:#861138;"><br /><br /><a href="{% url 'about' %}">GALILE</a></div>
 
-    <div class="span3 elem_entete" style="background-color:#61b8dc;"><br />MON<br />ENTREPRISE</div>
+    <div class="span3 elem_entete" style="background-color:#61b8dc;"><br /><a href="{% url 'update_profile' %}">MON<br />ENTREPRISE</a></div>
 
     <div class="span3 elem_entete" style="background-color:#abdb39;"><br /><a href="{% url 'home' %}">FIL<br />D'ACTUALITÉ</a></div>
 

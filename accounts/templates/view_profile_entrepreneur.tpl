@@ -8,20 +8,31 @@
     {% else %}
         logo: logo par défaut
     {% endif %}
-    <h2>{{ entrepreneur.first_name }} </h1>
+    <h2>{{ entrepreneur }} </h1>
     <ul class="inline profile-options">
         <li><a href="mailto:{{ entrepreneur.profile.user.email }}">Message</a></li>
-        <li><a href="{% url 'like' entrepreneur.pk %}" class="like"> J'aime ( {{ entrepreneur.likes.count }} ) </a></li>
-        <li><a href="{%  url 'mentor' entrepreneur.pk %}" class="mentor"> Je Mentor ( {{ entrepreneur.mentors.count }} )</a></li>
+        {% if user.get_profile.is_investisseur %}
+        <li><a href="{% url 'like' entrepreneur.pk %}" class="like">
+            {% if user.get_profile.investisseur in entrepreneur.likes.all %}Je n'aime plus{% else %}J'aime{% endif %}
+            ({{ entrepreneur.likes.count }}) </a></li>
+        <li><a href="{%  url 'mentor' entrepreneur.pk %}" class="mentor">
+            {% if user.get_profile.investisseur in entrepreneur.mentors.all %}Je ne mentor plus{% else %}Je mentor{% endif %}
+            ({{ entrepreneur.mentors.count }})</a></li>
+        {% endif %}
     </ul>
 
     <div class="bloc profile-desc">
-        Description:
+    <p>{{ entrepreneur.presentation }}</p>
+        <b>Informations supplémentaires:</b>
         <ul>
-            <li>Nom de l'entreprise: {{ entrepreneur.company_name }}</li>
+            <li>Nom de l'entreprise: {{ entrepreneur.company_name }}, créée le {{ entrepreneur.creation_date }}.</li>
             <li>Description: {{ entrepreneur.description  }} </li>
-            <li>date de création: {{ entrepreneur.creation_date }}</li>
+            <li>Marché visé: {{ entrepreneur.market }}</li>
+            <li>Chiffre d'affaire visé: {{ entrepreneur.turnover }} €</li>
+            <li>Ce que j'attends de la communauté de Galilé360: {{ entrepreneur.expectation }}</li>
         </ul>
+
+
     </div>
 
 <div class="bloc">
@@ -37,6 +48,8 @@
         <ul>
         {%  for inv in entrepreneur.likes.all %}
             <li>{{ inv }}</li>
+        {% empty %}
+            <li>Personne pour l'instant.</li>
         {% endfor %}
         </ul>
 
@@ -46,6 +59,8 @@
         <ul>
         {%  for inv in entrepreneur.mentors.all %}
             <li>{{ inv }}</li>
+        {% empty %}
+            <li>Personne pour l'instant.</li>
         {% endfor %}
         </ul>
 

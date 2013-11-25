@@ -1,3 +1,6 @@
+# coding=utf8
+# -*- coding: utf8 -*-
+
 from datetime import datetime
 
 from django.db import models
@@ -22,7 +25,10 @@ class UserProfile(models.Model):
             return self.get_type() == 'I'
 
         def __unicode__(self):
-                return self.user.email
+            try:
+                return self.investisseur.__unicode__()
+            except:
+                return self.entrepreneur.__unicode__()
 
 class BaseProfile(models.Model):
     class Meta:
@@ -33,7 +39,11 @@ class BaseProfile(models.Model):
     sex = models.CharField(max_length=1, choices=(('M', 'Male'), ('F', 'Female')))
     adresse = models.CharField(max_length=300)
 
+    registration_date = models.DateTimeField(default=datetime.now)
 
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('accounts.views.view_profile', args=[str(self.profile.user.id)])
 
 class Investisseur(BaseProfile):
     """
@@ -48,6 +58,7 @@ class Investisseur(BaseProfile):
     domaine = models.CharField(max_length=200)
     # - Qui etes-vous ?
     description = models.CharField(max_length=200)
+    photo = models.ImageField(upload_to='photos/')
 
     def __unicode__(self):
         return  self.first_name + ' ' + self.last_name
@@ -58,18 +69,19 @@ class Entrepreneur(BaseProfile):
     profile = models.OneToOneField(UserProfile, primary_key=True, related_name='entrepreneur')
 
     # - Qui etes-vous ?
-    company_name = models.CharField(max_length=200)
+    presentation = models.CharField(max_length=200, verbose_name='Qui etes-vous ?')
+    company_name = models.CharField(max_length=200, verbose_name='Nom de votre entreprise')
     #- Quel est votre projet ? (Court resume, env 4-5 lignes)
-    description = models.TextField()
+    description = models.TextField(verbose_name='Quel est votre projet ? (Court resume, env 4-5 lignes)')
     # - Quel est le marche vise ?
-    market = models.CharField(max_length=200)
+    market = models.CharField(max_length=200, verbose_name='Quel est le marche visé ?')
     # - Quel est le differentiateur ?
     # - Quel est le niveau d'avancement du projet ?
-    progress = models.IntegerField()
+    progress = models.TextField(verbose_name='Quel est le niveau d\'avancement du projet ?')
     # - Quel chiffre d'affaire visez-vous dans 3 ans ?
-    turnover = models.IntegerField()
+    turnover = models.IntegerField(verbose_name='Quel chiffre d\'affaire visez-vous dans 3 ans ?')
     # - Qu'attendez-vous de la communaute Galile360 ?
-    expectation = models.TextField()
+    expectation = models.TextField(verbose_name='Qu\'attendez-vous de la communauté Galilé360 ?')
     # - Upload CV
     resume = models.FileField(upload_to='cv/')
     logo = models.ImageField(upload_to='avatars/')

@@ -17,7 +17,7 @@ from news.forms import *
 def login(request):
         template = "login.tpl"
         success_msg = "Vous êtes maintenant connecté."
-        fail_msg = "Email ou mot de passe non reconnu"
+        fail_msg = "Email ou mot de passe non reconnu."
         
         if request.method == 'POST':
                 form = LoginForm(request.POST)
@@ -30,7 +30,8 @@ def login(request):
                         url = request.GET.get('next', '/')
                         return HttpResponseRedirect(url)
                 else:
-                        return HttpResponse(fail_msg)
+                        messages.add_message(request, messages.ERROR, fail_msg)
+                        return HttpResponseRedirect('/accounts/login/')
         else:
                 form = LoginForm()
                 return render(request, template, {'form': form,})
@@ -41,7 +42,8 @@ def logout(request):
         
 def register(request, user_type):
         template = "registration.tpl"
-        success_msg = "Bienvenue parmi nous"
+        success_msg = "Bienvenue parmi nous."
+        fail_msg = "Vous avez fait des erreurs en remplissant le formulaire."
 
         if  user_type == 'I':
             profile_class = Investisseur
@@ -81,6 +83,8 @@ def register(request, user_type):
                             messages.info(request, success_msg)
 
                         return HttpResponseRedirect("/")
+                else:
+                    messages.error(request, fail_msg)
         else:
                 form = registration_form_class()
                         
@@ -126,22 +130,26 @@ def view_profile(request, user_id):
 
     return render(request, template, template_data)
 
+
+# Ajax views
+
 @login_required
 def like(request, entrepreneur_id):
     if request.is_ajax():
         try:
             inv = request.user.get_profile().investisseur
         except:
-            return HttpResponse("You don't have the right motherfucker!")
+            return HttpResponse("Vous n'avez pas les droits suffisants.")
 
         ent = Entrepreneur.objects.get(pk=entrepreneur_id)
 
-        msg = "J'aime"
+
         if inv in ent.likes.all():
             ent.likes.remove(inv)
+            msg = "J'aime " + "(" + str(ent.likes.count()) + ")"
         else:
-            msg = "Je n'aime plus"
             ent.likes.add(inv)
+            msg = "Je n'aime plus " + "(" + str(ent.likes.count()) + ")"
         return HttpResponse(msg)
 
     else:
@@ -153,16 +161,16 @@ def mentor(request, entrepreneur_id):
         try:
             inv = request.user.get_profile().investisseur
         except:
-            return HttpResponse("You don't have the right motherfucker!")
+            return HttpResponse("Vous n'avez pas les droits suffisants.")
 
         ent = Entrepreneur.objects.get(pk=entrepreneur_id)
 
-        msg = "Je Mentor"
         if inv in ent.mentors.all():
             ent.mentors.remove(inv)
+            msg = "Je mentor " + "(" + str(ent.mentors.count()) + ")"
         else:
-            msg = "Je ne mentor plus"
             ent.mentors.add(inv)
+            msg = "Je ne mentor plus " + "(" + str(ent.mentors.count()) + ")"
 
         return HttpResponse(msg)
     else:

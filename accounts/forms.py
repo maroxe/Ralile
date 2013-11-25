@@ -1,3 +1,6 @@
+# coding=utf8
+# -*- coding: utf8 -*-
+
 from django import forms, contrib
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -17,25 +20,25 @@ class UserProfileForm(forms.ModelForm):
 class EntrepreneurForm(forms.ModelForm):
     class Meta:
         model = Entrepreneur
-        fields = ('first_name', 'logo', 'progress')
+        fields = ('company_name', 'logo', 'progress')
 
 
 class InvestisseurForm(forms.ModelForm):
     class Meta:
         model = Investisseur
-        fields = ('motivation', 'description')
+        fields = ('motivation', 'domaine')
 
 class RegistrationForm(forms.Form):
 
-    first_name = forms.CharField(max_length=250)
-    last_name = forms.CharField(max_length=250)
-    email = forms.CharField(max_length=250)
-    confirm_email = forms.CharField(max_length=250)
-    password = forms.CharField(max_length=250)
+    first_name = forms.CharField(max_length=250, label='Prénom')
+    last_name = forms.CharField(max_length=250, label='Nom')
+    email = forms.CharField(max_length=250, label='Email')
+    confirm_email = forms.CharField(max_length=250, label='Confirmer votre email')
+    password = forms.CharField(widget=forms.PasswordInput(), max_length=250, label='Mot de passe')
 
-    birth_date = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}))
-    sex = forms.ChoiceField(choices=(('M', 'Male'), ('F', 'Female')))
-    adresse = forms.CharField(max_length=300)
+    birth_date = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}), label='Date de naissance')
+    sex = forms.ChoiceField(choices=(('M', 'Homme'), ('F', 'Femme')), label='Sexe')
+    adresse = forms.CharField(max_length=300, label='Adresse')
 
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -61,31 +64,31 @@ class RegistrationForm(forms.Form):
 
 class RegistrationInvestisseurForm(RegistrationForm):
     #- Pourquoi voulez-vous etre mentor ?
-    motivation = forms.CharField(max_length=200)
+    motivation = forms.CharField(max_length=200, label='Pourquoi voulez-vous etre mentor ?')
     # - Dans quel domaine pouvez-vous transmettre des competences ?
-    domaine = forms.CharField(max_length=200)
+    domaine = forms.CharField(max_length=200, label='Dans quel domaine pouvez-vous transmettre des competences ?')
     # - Qui etes-vous ?
-    description = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea, label='Qui etes-vous ?')
     fields = ('first_name', 'last_name', 'birth_date', 'sex', 'adresse', 'motivation', 'domaine', 'description')
 
 class RegistrationEntrepreuneurForm(RegistrationForm):
  # - Qui etes-vous ?
-    company_name = forms.CharField(max_length=200)
+    company_name = forms.CharField(max_length=200, label='Qui etes-vous ?')
     #- Quel est votre projet ? (Court resume, env 4-5 lignes)
-    description = forms.CharField()
+    description = forms.CharField(label='Quel est votre projet ? (Court resume, env 4-5 lignes)')
     # - Quel est le marche vise ?
-    market = forms.CharField(max_length=200)
+    market = forms.CharField(max_length=200, label='Quel est le marche vise ?')
     # - Quel est le differentiateur ?
     # - Quel est le niveau d'avancement du projet ?
-    progress = forms.IntegerField()
+    progress = forms.IntegerField( label='Quel est le niveau d\'avancement du projet ?')
     # - Quel chiffre d'affaire visez-vous dans 3 ans ?
-    turnover = forms.IntegerField()
+    turnover = forms.IntegerField( label='Quel chiffre d\'affaire visez-vous dans 3 ans ?')
     # - Qu'attendez-vous de la communaute Galile360 ?
-    expectation = forms.CharField()
+    expectation = forms.CharField(label='Qu\'attendez-vous de la communaute Galile360 ?')
     # - Upload CV
-    resume = forms.FileField()
-    logo = forms.ImageField()
-    creation_date = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}))
+    resume = forms.FileField(label='Votre CV')
+    logo = forms.ImageField(label='Le logo de votre enreprise')
+    creation_date = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}), label='Date de création de votre entreprise')
 
     fields = ('first_name', 'last_name', 'birth_date', 'sex', 'adresse', 'company_name', 'description',
               'market', 'progress', 'turnover', 'expectation', 'resume', 'logo', 'creation_date')

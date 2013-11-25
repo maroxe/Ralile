@@ -35,8 +35,9 @@
                 <div class="alert alert-{{ message.tags }}">
                 <a class="close" data-dismiss="alert">x</a>
                 {{ message }}
-                {% endfor %}
                 </div>
+                {% endfor %}
+
                 {% endif %}
                 {% block content %}{% include "corps.tpl" %}{% endblock content %}
             </div>

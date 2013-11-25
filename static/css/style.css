@@ -58,6 +58,11 @@ body {
 
 }
 
+.element_sommaire a{
+    text-decoration: none;
+    color: #3f3f41;
+}
+
 /* Corps */
 #corps {
 
@@ -102,7 +107,7 @@ address
 
 .profile-options li {
     background-color: black;
-    width: 100px;
+    width: 120px;
     text-align: center;
 }
 .profile-options li a{
@@ -120,6 +125,10 @@ address
     width: 500px;
 }
 
-/* datepicker */
-.ui-datepicker  {
+/* News */
+.post h1 {
+
+}
+.post p{
+    font-size: small;
 }

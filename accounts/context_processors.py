@@ -16,6 +16,6 @@ def domain(request):
 
     return {
         'entrepreneurs': entrepreneurs,
-        'investisseurs': investisseurs
+        'investisseurs': investisseurs,
     }
 
